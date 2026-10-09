@@ -143,10 +143,7 @@ Before updating, download a backup and keep your `.env`, uploads and Docker volu
 - **Unexpectedly empty app:** check the Docker project/volume. Use a full backup when moving to a new computer.
 - **Printer offline:** check Windows printing and follow [PRINTING.md](PRINTING.md).
 
-## Uploading to GitHub
+## License
 
-Upload the contents of this clean source folder, including `.gitignore`, `.dockerignore`, `.env.example`, the empty `seed.json` and `frontend/package-lock.json`.
-
-Exclude `.env`, local storage folders, databases, customer spreadsheets, logs, real screenshots and `%LOCALAPPDATA%\DigitXBDPrint` (private printer configuration). `.gitignore` protects Git commits; manual browser uploads require you to exclude private files yourself. Ignore rules do not remove files already committed to history.
-
-Keep your live installation separate from this public copy.
+Licensed under the [MIT License](LICENSE).
+Third-party components retain their respective licenses.
