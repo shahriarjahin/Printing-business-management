@@ -1,0 +1,28 @@
+/* Accessible navigation on short desktop screens and on phones. */
+.sidebar{height:100vh;height:100dvh;overflow-y:auto;padding-top:20px;gap:0}
+.sidebar .brand{flex-shrink:0;padding-bottom:12px}
+.sidebar>.nav-label{flex-shrink:0;padding-top:8px;padding-bottom:6px}
+.sidebar #nav{flex:1 1 auto;min-height:0;overflow-y:auto;overflow-x:hidden;scrollbar-width:thin;overscroll-behavior:contain;padding-right:3px}
+.sidebar-bottom{flex-shrink:0;margin-top:10px}
+.sidebar-bottom .portal-link{margin:7px 0;padding:8px 10px}
+.sidebar-bottom .user{padding-top:10px;margin-top:10px}
+.nav-group{margin:4px 0;border-top:1px solid var(--line)}
+.nav-group summary{cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:12px 12px 7px;color:var(--muted);font-size:10px;font-weight:700;letter-spacing:.6px;text-transform:uppercase}
+.nav-group summary::-webkit-details-marker{display:none}
+.nav-group summary::after{content:'›';font-size:18px;transform:rotate(0);transition:transform .15s}
+.nav-group[open] summary::after{transform:rotate(90deg)}
+.nav-group a{padding:9px 12px;margin:2px 0}
+.upload-progress{display:flex;align-items:center;justify-content:center;gap:18px;padding:20px;margin:16px 0;background:var(--bg);border:1px solid var(--line);border-radius:14px}
+.upload-progress.hidden{display:none}
+.upload-progress p{font-size:12px;margin:5px 0}
+.upload-ring{height:88px;width:88px;flex-shrink:0;position:relative;display:grid;place-items:center}
+.upload-ring svg{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90deg)}
+.upload-ring circle{fill:none;stroke-width:7}
+.upload-ring-track{stroke:var(--line)}
+.upload-ring-value{stroke:var(--teal);stroke-linecap:round;stroke-dasharray:270.18;stroke-dashoffset:270.18;transition:stroke-dashoffset .15s linear}
+.upload-ring strong{color:var(--ink);font-size:20px}
+.upload-finishing .upload-ring svg{animation:upload-turn 1.8s linear infinite}
+.upload-finishing .upload-ring-value{stroke-dasharray:200 70.18}
+@keyframes upload-turn{from{transform:rotate(-90deg)}to{transform:rotate(270deg)}}
+@media(prefers-reduced-motion:reduce){.upload-ring-value{transition:none}.upload-finishing .upload-ring svg{animation:none}}
+@media(max-width:420px){.upload-progress{padding:15px;gap:12px}.upload-ring{height:76px;width:76px}}

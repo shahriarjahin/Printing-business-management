@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="csrf-token" content="{{ csrf }}"><title>Place an order · {{ config.business_name }}</title>
+<link rel="stylesheet" href="/static/style.css"><link rel="stylesheet" href="/static/usability.css"><script src="/static/upload-progress.js" defer></script><script src="/static/public.js" defer></script>
+<script src="/static/theme.js"></script></head><body class="public-body order-page">
+<header class="public-header"><a class="brand" href="/online_order"><img class="site-logo" src="/static/digitxbd-logo.png" alt="{{ config.business_name }}" width="2172" height="724"></a></header>
+<main class="order-layout"><section class="panel order-form"><h2>Place your order</h2>
+<form id="order-form" enctype="multipart/form-data">
+<input type="hidden" name="csrf" value="{{ csrf }}">
+<script type="application/json" id="order-prices">{{ prices|tojson }}</script>
+<div class="form-grid">
+<label>Your name<input name="name" required maxlength="120" autocomplete="name"></label>
+<label>WhatsApp / mobile<input type="tel" name="phone" required placeholder="01XXXXXXXXX" autocomplete="tel"><small id="customer-match" role="status" aria-live="polite">Use the same number for repeat orders.</small></label>
+<label class="full">Service<select name="service">{% for service in categories %}<option>{{ service }}</option>{% endfor %}</select></label>
+</div>
+<label class="file-drop">Upload your files<input type="file" name="files" multiple accept=".pdf,.doc,.docx,.odt,.jpg,.jpeg,.png,.txt,.pptx,.xlsx"><small>Up to 5 files · PDF, documents or images</small></label>
+<p id="page-detection" class="muted" role="status" aria-live="polite">PDF pages are counted automatically. Each photo counts as one page. Word and other files need a manual page count.</p>
+<div class="form-grid">
+<label id="bw-label">Black &amp; white pages per copy<input type="number" name="bw_pages" min="0" max="100000" value="1" required inputmode="numeric"><small>৳3 per printed page</small></label><label id="color-pages-label">Color pages per copy<input type="number" name="color_pages" min="0" max="100000" value="0" required inputmode="numeric"><small>৳5 per printed page · enter the color page numbers in Instructions.</small></label>
+<label><span id="quantity-label">Number of copies</span><input type="number" name="quantity" min="1" max="100000" value="1" required inputmode="numeric"></label>
+<label id="paper-label">Paper size<select name="paper"><option>A4</option><option>A3</option><option>Photo</option><option>Other</option></select></label>
+
+<label id="sides-label">Sides<select name="sides"><option>Single sided</option><option>Double sided</option></select></label>
+<label>Binding<select name="binding"><option>None</option><option>Spiral</option><option>Soft cover</option><option>Hard cover</option><option>Staple</option></select></label>
+</div>
+<div class="minimum-quote" aria-live="polite"><div class="quote-heading"><span>Minimum quote</span><strong id="quote-total">৳3</strong></div><p id="quote-breakdown">1 page × 1 copy × ৳3</p>
+<div class="price-guide"><span>Color ৳5/page</span><span>B&amp;W ৳3/page</span><span>Stamp photo ৳5/pc · minimum 8</span><span>Binding +৳10/order</span></div>
+<small>Starting price only. The shop confirms the final bill after checking your files. Pages are charged per printed side.</small></div>
+<div class="form-grid"><label class="full">Instructions<textarea name="details" required maxlength="4000" placeholder="Page range, photo sizing, special paper, or anything else we should know."></textarea></label><label class="full">Preferred collection date<input type="date" name="deadline"></label></div>
+<label class="honeypot" aria-hidden="true">Website<input name="website" tabindex="-1" autocomplete="off"></label>
+<label class="check"><input type="checkbox" name="consent" value="yes" required>I permit DigitXBD to process my files for this order. {{ retention_notice }} I will keep my tracking link private.</label>
+<div id="form-error" class="notice danger hidden" role="alert"></div><button class="primary wide" type="submit">Submit order →</button>
+</form></section></main></body></html>
